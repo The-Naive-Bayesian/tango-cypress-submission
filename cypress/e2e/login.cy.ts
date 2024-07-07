@@ -1,22 +1,19 @@
 import LoginPage from "../support/pages/login.page";
+import HomePage from "../support/pages/home.page";
 
 describe('login page', () => {
   beforeEach(() => {
     // This is a prerequisite for all tests in this file, so we place it here to avoid repetition
-    cy.visit('https://app.tango.us/sign-in');
-
-    // Reduce noise when debugging this page by turning logs off for this path
-    cy.intercept('/frontegg/flags', { log: false });
-    cy.intercept('/embed/unread', { log: false });
+    LoginPage.visit();
   });
 
   // The first set of tests (not in a nested 'describe' block) check basic facts about the page
   it('loads the page', () => {
-    cy.get("h2").should('contain.text', 'Sign in to Tango');
+    cy.get(LoginPage.headerSelector).should('contain.text', 'Sign in to Tango');
   });
 
   it('displays the "create an account" option', () => {
-    cy.get("[data-testid='auth.signIn.signUpLink']")
+    cy.get(LoginPage.createAnAccountSelector)
       .should('be.visible')
       .should('be.enabled');
   });
@@ -24,7 +21,7 @@ describe('login page', () => {
   // We are going to keep things simple for the Google sign in, since it is to a large extent a 3rd party maintained system
   describe('google-based sign in', () => {
     it('displays the Google login option', () => {
-      cy.get("[data-testid='auth.signUp.googleButton']")
+      cy.get(LoginPage.googleAuthSelector)
         .should('be.visible')
         .should('be.enabled');
     });
@@ -32,8 +29,6 @@ describe('login page', () => {
 
   // Here we take a closer look at the email-based login section and its behavior
   describe('email-based sign in', () => {
-    const teamLibraryHeader = "[data-testid='workflowsList.title']";
-
     it('displays the email-based login option', () => {
       cy.get(LoginPage.emailInputSelector)
         .should('be.visible')
@@ -42,7 +37,7 @@ describe('login page', () => {
       cy.get(LoginPage.continueButtonSelector).should('be.disabled');
     });
 
-    it.only('displays the password field after submitting a valid email', () => {
+    it('displays the password field after submitting a valid email', () => {
       cy.get(LoginPage.emailInputSelector).type(Cypress.env('email'));
 
       cy.get(LoginPage.passwordInputSelector)
@@ -55,7 +50,8 @@ describe('login page', () => {
         .should('be.enabled')
         .click();
 
-      cy.get(teamLibraryHeader).should('contain.text', 'Team Library');
+      cy.get(HomePage.teamLibraryHeader, {timeout: 15000})
+        .should('contain.text', 'Team Library');
     });
   });
 });
