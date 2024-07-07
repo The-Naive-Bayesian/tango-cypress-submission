@@ -1,6 +1,7 @@
 class HomePage {
-  teamLibraryHeader = "[data-testid='workflowsList.title']";
-  noTangosMessage = "[data-testid='shared.emptyState.wrapper'] h2";
+  teamLibraryHeaderSelector = "[data-testid='workflowsList.title']";
+  noTangosMessageSelector = "[data-testid='shared.emptyState.wrapper'] h2";
+  extensionLinkSelector = "[data-testid='header.installExtensionButton']"
 }
 
 export default new HomePage();

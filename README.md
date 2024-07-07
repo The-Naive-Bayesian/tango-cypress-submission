@@ -3,7 +3,7 @@
 This project assumes you have a relatively recent version of Node.js with `NPM` installed on your computer,
 as well as `git`, and an internet connection.
 
-This project can be cloned from github using `git clone git@github.com:The-Naive-Bayesian/tango-cypress-submission.git`,
+This project can be cloned from GitHub using `git clone git@github.com:The-Naive-Bayesian/tango-cypress-submission.git`,
 assuming you have SSH enabled for GitHub.
 
 ## Installing Dependencies
