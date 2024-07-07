@@ -14,9 +14,9 @@ This must be done before any subsequent steps.
 Some tests in this suite use environmental variables for sensitive or configurable values.
 These tests will fail if these values are not set.
 
-To set these values, copy the `cypress/EXAMPLE.env.json` file, then change the values provided to fit your data.
-For example, `accountEmail` should be updated with the email address of a test account set up for
-email-based authentication, while `accountPassword` should be updated with that account's password.
+To set these values, copy the `EXAMPLE.env.json` file, then change the values provided to fit your data.
+For example, `email` should be updated with the email address of a test account set up for
+email-based authentication, while `password` should be updated with that account's password.
 
 # How To Run Tests
 To run the tests in this project, use the `npx cypress open` command,
